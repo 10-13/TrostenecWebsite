@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #2c3e50;
+    padding: 10px 20px;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    min-height: 40px;
+    transition: height 0.3s ease;
+}
+
+.menu-container {
+    position: relative;
+}
+
+.menu-button {
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.menu-button:hover {
+    background-color: #ff7700;
+}
+
+.dropdown-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #34495e;
+    width: 100%;
+    margin-top: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.dropdown-menu.active {
+    display: flex;
+}
+
+.dropdown-menu a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.dropdown-menu a:hover {
+    background-color: #2c3e50;
+}
+
+.logo-button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    align-self: flex-start;
+}
+
+.accordion {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    border-bottom: 1px solid #eee;
+}
+
+.accordion-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    padding: 10px 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+.accordion-header:hover {
+    color: #1a73e8;
+}
+
+.underline {
+    width: 100%;
+    height: 2px;
+    background-color: #34495e;
+    transition: background-color 0.3s;
+}
+
+.accordion.active .underline {
+    background-color: #1a73e8;
+}
+
+.accordion-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.accordion-content p {
+    margin-top: 15px;
+    line-height: 1.6;
+    color: #333;
+    padding: 10px 0;
+}
+
+.accordion.active .accordion-content {
+    max-height: 1000000px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/*
+ * Стили для галереи-мозаики
+ */
+
+/* 1. Контейнер галереи */
+.gallery-grid {
+  display: grid; /* Включаем магию CSS Grid */
+  
+  /* Самая важная часть: создаем адаптивные колонки.
+     Браузер сам создаст столько колонок, сколько поместится,
+     каждая колонка будет минимум 120px, а остаток места разделится поровну. */
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  
+  gap: 8px; /* Расстояние между картинками */
+  padding-top: 10px; /* Небольшой отступ сверху */
+}
+
+/* 2. Стили для самих картинок в мозаике */
+.gallery-grid img {
+  width: 100%; /* Картинка занимает всю ширину ячейки грида */
+  aspect-ratio: 1 / 1; /* Делаем картинки идеальными квадратами */
+  
+  /* Это свойство гарантирует, что картинка заполнит квадрат,
+     не искажаясь, а лишнее обрежется. Точно как в Telegram. */
+  object-fit: cover;
+  
+  border-radius: 8px; /* Скругляем уголки для красоты */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Плавные эффекты */
+  cursor: pointer;
+}
+
+/* 3. Эффект при наведении на картинку */
+.gallery-grid img:hover {
+  transform: scale(1.05); /* Немного увеличиваем */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+}
+/*
+ * Стили для оверлея (Lightbox)
+ */
+
+/* 1. Сам оверлей - черный полупрозрачный фон */
+#image-overlay {
+  position: fixed; /* Фиксируем поверх всего */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* Черный фон с 85% прозрачностью */
+  z-index: 1000; /* Убедимся, что он выше всех других элементов */
+  
+  /* Используем flex для идеального центрирования картинки */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* Плавное появление и исчезновение */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* 2. Класс для активного (видимого) состояния оверлея */
+#image-overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 3. Картинка внутри оверлея */
+#overlay-image {
+  /* Ограничиваем максимальный размер, чтобы картинка не вылезала за экран */
+  max-width: 90vw;  /* не более 90% ширины экрана */
+  max-height: 90vh; /* не более 90% высоты экрана */
+  
+  object-fit: contain; /* Гарантирует, что вся картинка будет видна без искажений */
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Красивая тень */
+  border-radius: 4px;
+}
+
+/* 4. Кнопка "Закрыть" (крестик) */
+#close-overlay {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#close-overlay:hover {
+  transform: scale(1.1);
+}

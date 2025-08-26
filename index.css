@@ -1,0 +1,155 @@
+/* Общие стили */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+  color: #000;
+}
+
+/* Баннер */
+.banner {
+  width: 100%;
+  height: 250px;
+  background-color: #8a2be2; /* Фиолетовый фон вместо изображения */
+  background-image: url('tmp.jpg');
+  background-size: cover; /* или contain, или конкретные размеры */
+  background-position: 0px -100px;
+  background-repeat: no-repeat;
+  overflow: hidden; /* Убедись, что содержимое не вылезает */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Заголовок проекта */
+.project-title {
+  font-size: 2.5em;
+  line-height: 1.3;
+  margin: 40px 0 20px;
+  font-weight: bold;
+}
+
+.project-desc {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid #e67e22;
+  color: #e67e22;
+  text-decoration: none;
+  font-size: 1em;
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e67e22;
+  color: white;
+}
+
+/* Секция "Новизна и уникальность" */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.feature-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  position: relative;
+  background-color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавный переход для эффектов */
+}
+
+.feature-card:hover {
+  transform: scale(1.05); /* Увеличение карточки при наведении */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Мягкая тень для выделения */
+}
+
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background-color: #e67e22;
+}
+
+/* Стили для ссылок-карточек */
+.card-link {
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    color: inherit; /* Наследуем цвет текста от родителя */
+}
+
+.feature-number {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: #e67e22;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.feature-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.feature-text {
+  font-size: 0.95em;
+  color: #555;
+}
+
+/* Контактная информация */
+.contact-section {
+  margin: 50px 0;
+  text-align: start;
+  line-height: 1.8;
+}
+
+.contact-info p {
+  margin: 10px 0;
+}
+
+.contact-info a {
+  color: #e67e22;
+  text-decoration: underline;
+}
+
+.address {
+  margin-top: 30px;
+  font-size: 1em;
+  text-align: center;
+  color: #555;
+}
