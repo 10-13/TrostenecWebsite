@@ -79,10 +79,12 @@ function createHeaderHTML(title) {
     <div class="menu-container">
       <button class="menu-button" id="menuBtn">Меню</button>
       <div class="dropdown-menu" id="dropdownMenu">
+        <a href="index.html">Главная</a>
+        <a href="about.html">О проекте</a>
         <a href="content-1.html">Краеведческая работа</a>
         <a href="content-2.html">Методические разработки</a>
         <a href="content-3.html">Фотоотчёт</a>
-        <a href="content-4.html">Работы учеников</a>
+        <a href="content-4.html">Экскурсии</a>
       </div>
     </div>
     <a class="logo-button">${title}</a>
